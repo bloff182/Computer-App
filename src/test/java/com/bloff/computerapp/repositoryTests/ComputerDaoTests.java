@@ -53,7 +53,7 @@ public class ComputerDaoTests {
 			repo.addComputer(new Computer("ddr", -5L, 10));
 		});
 		
-		String expectedMessage = "";
+		String expectedMessage = " ";
 	}
 	
 	@Test
