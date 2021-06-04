@@ -1,6 +1,8 @@
 package com.bloff.computerapp.repositoryTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -35,12 +37,23 @@ public class ComputerDaoTests {
 	
 	@Test
 	public void should_not_add_new_computer_with_wrong_ddr_type() {
-		
+	    Exception exception = assertThrows(RuntimeException.class, () -> {
+	    	repo.addComputer(new Computer("", 10L, 10));
+	    });
+
+	    String expectedMessage = "ddr type field can not be empty";
+	    String actualMessage = exception.getMessage();
+
+	    assertTrue(actualMessage.contains(expectedMessage));
 	}
 	
 	@Test
 	public void should_not_add_new_computer_with_wrong_mhr() {
+		Exception exception = assertThrows(RuntimeException.class, () ->{
+			repo.addComputer(new Computer("ddr", -5L, 10));
+		});
 		
+		String expectedMessage = "";
 	}
 	
 	@Test
