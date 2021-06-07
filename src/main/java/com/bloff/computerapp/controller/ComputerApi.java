@@ -2,6 +2,7 @@ package com.bloff.computerapp.controller;
 
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +14,7 @@ import com.bloff.computerapp.model.Computer;
 import com.bloff.computerapp.service.ComputerService;
 
 @RestController
-@RequestMapping("/computers")
+@RequestMapping("/api")
 public class ComputerApi {
 
 	ComputerService computerService;
@@ -22,24 +23,32 @@ public class ComputerApi {
 		this.computerService = computerService;
 		computerService.addData(new Computer("ddr1", 100L, 1000));
 		computerService.addData(new Computer("ddr2", 200L, 2000));
+		computerService.addData(new Computer("ddr3", 200L, 2000));
+		computerService.addData(new Computer("ddr4", 200L, 2000));
+		computerService.addData(new Computer("ddr5", 200L, 2000));
 	}
 
-	@GetMapping("/get")
+	@GetMapping("/computers")
 	public Map<Integer, Computer> getData(){
 		
 		return computerService.getData();
 	}
 	
-	@GetMapping("/get/{id}")
+	@GetMapping("/computers/{id}")
 	public Computer getById(@PathVariable Integer id) {
 		
 		return computerService.getData(id);
 	}
 	
-	@PostMapping("/add")
+	@PostMapping("/computers")
 	public Computer addData(@RequestBody Computer computer) {
 		
 		return computerService.addData(computer);
+	}
+	
+	@DeleteMapping("computers/{id}")
+	public void deleteComputer(@PathVariable Integer id) {
+		computerService.deleteComputer(id);
 	}
 	
 	@GetMapping()

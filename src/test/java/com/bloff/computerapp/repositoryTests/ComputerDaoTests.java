@@ -48,16 +48,29 @@ public class ComputerDaoTests {
 	}
 	
 	@Test
+	public void should_not_add_new_computer_with_wrong_memory_size() {
+		Exception exception = assertThrows(RuntimeException.class, () ->{
+			repo.addComputer(new Computer("ddr", 10L, 0));
+		});
+		
+		String expectedMessage = "Memory size must be greather than zero";
+		String actualMessage = exception.getMessage();
+		
+		assertThat(actualMessage).isEqualTo(expectedMessage);
+		
+	}
+	
+	@Test
 	public void should_not_add_new_computer_with_wrong_mhr() {
 		Exception exception = assertThrows(RuntimeException.class, () ->{
 			repo.addComputer(new Computer("ddr", -5L, 10));
 		});
 		
-		String expectedMessage = " ";
+		String expectedMessage = "mhz must be greather than zero";
+		String actualMessage = exception.getMessage();
+		
+		assertThat(actualMessage).isEqualTo(expectedMessage);
 	}
 	
-	@Test
-	public void should_not_add_new_computer_with_wrong_memory_size() {
-		
-	}
+	
 }

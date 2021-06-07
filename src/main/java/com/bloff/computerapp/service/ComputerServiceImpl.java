@@ -1,6 +1,7 @@
 package com.bloff.computerapp.service;
 
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,8 @@ import com.bloff.computerapp.repository.ComputerDao;
 public class ComputerServiceImpl implements ComputerService {
 
 	ComputerDao computerDao;
+	
+	
 	
 	public ComputerServiceImpl(ComputerDao computerDao) {
 		this.computerDao = computerDao;
@@ -23,12 +26,28 @@ public class ComputerServiceImpl implements ComputerService {
 
 	@Override
 	public Computer getData(Integer id) {
-		return computerDao.getDbComputer().get(id);
+		
+		Computer existComputer = computerDao.getDbComputer().get(id);
+		if(existComputer == null) {
+			throw new RuntimeException("Computer does not exist by id = " + id);
+		} 
+		
+		return existComputer;
 	}
 
 	@Override
 	public Computer addData(Computer computer) {
 		return computerDao.addComputer(computer);
+	}
+
+	@Override
+	public void deleteComputer(Integer id) {
+		if (id == null) {
+			throw new RuntimeException("Computer does not exist by id = " + id);
+		}
+		computerDao.getAviableDeletedId().add(id);
+		computerDao.getDbComputer().remove(id);
+		
 	}
 
 }

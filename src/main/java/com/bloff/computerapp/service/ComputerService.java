@@ -11,6 +11,8 @@ public interface ComputerService {
 	public Computer getData(Integer id);
 
 	public Computer addData(Computer computer);
+
+	public void deleteComputer(Integer id);
 	
 	
 }
