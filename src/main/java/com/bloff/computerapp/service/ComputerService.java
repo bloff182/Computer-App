@@ -12,7 +12,7 @@ public interface ComputerService {
 
 	public Computer addData(Computer computer);
 
-	public void deleteComputer(Integer id);
+	public boolean deleteComputer(Integer id);
 	
 	
 }

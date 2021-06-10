@@ -47,8 +47,8 @@ public class ComputerApi {
 	}
 	
 	@DeleteMapping("computers/{id}")
-	public void deleteComputer(@PathVariable Integer id) {
-		computerService.deleteComputer(id);
+	public boolean deleteComputer(@PathVariable Integer id) {
+		return computerService.deleteComputer(id);
 	}
 	
 	@GetMapping()

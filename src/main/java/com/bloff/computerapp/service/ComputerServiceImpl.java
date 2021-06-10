@@ -41,13 +41,14 @@ public class ComputerServiceImpl implements ComputerService {
 	}
 
 	@Override
-	public void deleteComputer(Integer id) {
-		if (id == null) {
-			throw new RuntimeException("Computer does not exist by id = " + id);
+	public boolean deleteComputer(Integer id) {
+		if (computerDao.getDbComputer().get(id) == null) {
+//			throw new RuntimeException("Computer does not exist by id = " + id);
+			return false;
 		}
 		computerDao.getAviableDeletedId().add(id);
 		computerDao.getDbComputer().remove(id);
-		
+		return true;
 	}
 
 }
