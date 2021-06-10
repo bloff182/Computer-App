@@ -31,8 +31,8 @@ public class ControllerApiDB {
 	public List<ComputerDto> getData() {
 
 		List<Computer> computers = computerService.getComputers();
-		for (Computer dtoComputer : computers) {
-			localDB.add(modelMapper.map(dtoComputer, ComputerDto.class));
+		for (Computer computer : computers) {
+			localDB.add(modelMapper.map(computer, ComputerDto.class));
 		}
 			
 		return localDB;
