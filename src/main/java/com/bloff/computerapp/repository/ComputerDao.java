@@ -12,20 +12,20 @@ import com.bloff.computerapp.model.Computer;
 @Repository
 public class ComputerDao {
 
-	private Map<Integer, Computer> dbComputer = new TreeMap<>();
+	private Map<Long, Computer> dbComputer = new TreeMap<>();
 	
 	private int dbSize = dbComputer.size();
-	private List<Integer> aviableDeletedId = new LinkedList<>();
+	private List<Long> aviableDeletedId = new LinkedList<>();
 
-	public ComputerDao(Map<Integer, Computer> dbComputer) {
+	public ComputerDao(Map<Long, Computer> dbComputer) {
 		this.dbComputer = dbComputer;
 	}
 
-	public Map<Integer, Computer> getDbComputer() {
+	public Map<Long, Computer> getDbComputer() {
 		return dbComputer;
 	}
 
-	public void setDbComputer(Map<Integer, Computer> dbComputer) {
+	public void setDbComputer(Map<Long, Computer> dbComputer) {
 		this.dbComputer = dbComputer;
 	}
 	
@@ -37,11 +37,11 @@ public class ComputerDao {
 		this.dbSize = dbSize;
 	}
 	
-	public List<Integer> getAviableDeletedId() {
+	public List<Long> getAviableDeletedId() {
 		return aviableDeletedId;
 	}
 
-	public void setAviableDeletedId(List<Integer> aviableDeletedId) {
+	public void setAviableDeletedId(List<Long> aviableDeletedId) {
 		
 		this.aviableDeletedId = aviableDeletedId;
 	}
@@ -59,7 +59,7 @@ public class ComputerDao {
 		}
 		
 		if(aviableDeletedId.size() == 0){
-				dbComputer.put(dbSize + 1, computer);
+				dbComputer.put(dbSize + 1L, computer);
 				dbSize++;
 		}
 		else {

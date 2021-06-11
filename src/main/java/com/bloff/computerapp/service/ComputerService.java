@@ -6,13 +6,13 @@ import com.bloff.computerapp.model.Computer;
 
 public interface ComputerService {
 
-	public Map<Integer, Computer> getData();
+	public Map<Long, Computer> getData();
 
-	public Computer getData(Integer id);
+	public Computer getData(Long id);
 
 	public Computer addData(Computer computer);
 
-	public boolean deleteComputer(Integer id);
+	public boolean deleteComputer(Long id);
 	
-	
+	public Computer update(Computer newComputer, Long id);
 }

@@ -15,7 +15,7 @@ import com.bloff.computerapp.repository.ComputerDao;
 
 public class ComputerDaoTests {
 
-	private Map<Integer, Computer> tempDB = new TreeMap<>();
+	private Map<Long, Computer> tempDB = new TreeMap<>();
 	
 	private ComputerDao repo;
 

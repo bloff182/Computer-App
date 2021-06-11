@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,13 +30,13 @@ public class ComputerApi {
 	}
 
 	@GetMapping("/computers")
-	public Map<Integer, Computer> getData(){
+	public Map<Long, Computer> getData(){
 		
 		return computerService.getData();
 	}
 	
 	@GetMapping("/computers/{id}")
-	public Computer getById(@PathVariable Integer id) {
+	public Computer getById(@PathVariable Long id) {
 		
 		return computerService.getData(id);
 	}
@@ -46,8 +47,14 @@ public class ComputerApi {
 		return computerService.addData(computer);
 	}
 	
+	@PutMapping("/computers/{id}")
+	public Computer updateComputer(@RequestBody Computer newComputer, @PathVariable Long id) {
+		
+		return computerService.update(newComputer, id);
+	}
+	
 	@DeleteMapping("computers/{id}")
-	public boolean deleteComputer(@PathVariable Integer id) {
+	public boolean deleteComputer(@PathVariable Long id) {
 		return computerService.deleteComputer(id);
 	}
 	
